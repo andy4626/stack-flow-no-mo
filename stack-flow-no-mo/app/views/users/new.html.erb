@@ -2,19 +2,26 @@
   <legend>Register</legend>
 <%= form_for @user do |f| %>
   <p>
-    <%= f.label :username %>
+    <%= f.label :username %>:
     <%= f.text_field :username %>
   </p>
   <p>
-    <%= f.label :password %>
+    <%= f.label :password %>:
     <%= f.password_field :password %>
   </p>
   <p>
-    <%= f.label :password_confirmation %>
+    <%= f.label :password_confirmation %>:
     <%= f.password_field :password_confirmation %>
   </p>
   <p>
     <%= f.submit %>
   </p>
 <% end %>
+
+<% if @errors %>
+  <% @errors.each do |error| %>
+    <%= error %>
+  <% end %>
+<% end %>
+
 </fieldset>
