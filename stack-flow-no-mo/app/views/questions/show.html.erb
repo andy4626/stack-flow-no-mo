@@ -1,0 +1,18 @@
+<div>
+<h1><%= @question.title %></h1>
+<h2>by <%=link_to @question.user.username, user_path(@question.user)%></h2>
+
+<p>
+  <%= @question.content%>
+</p>
+  <%@question.comments.each do |comment|%>
+    <div>
+      <fieldset>
+        <legend>Comment by: <%=comment.user.username%></legend>
+        <%=comment.content%>
+      </fieldset>
+    </div>
+  <%end%>
+</div>
+
+<%= render 'answer' %>

@@ -1,0 +1,16 @@
+<% @answers.each do |answer|%>
+<div>
+  <fieldset>
+    <legend>Answered by: <%=answer.user.username%></legend>
+    <%=answer.content%>
+  </fieldset>
+</div>
+  <%answer.comments.each do |comment|%>
+    <div>
+      <fieldset>
+        <legend>Comment by: <%=comment.user.username%></legend>
+        <%=comment.content%>
+      </fieldset>
+    </div>
+  <%end%>
+<%end%>

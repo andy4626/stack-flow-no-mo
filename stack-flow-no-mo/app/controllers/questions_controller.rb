@@ -18,20 +18,11 @@ class QuestionsController < ApplicationController
 
   def show
     @question = Question.find(params[:id])
-  end
-
-  def edit
-    @question = Question.find(params[:id])
-  end
-
-  def update
-    @question = Question.find(params[:id])
-    if @question.user == current_user
-      @question.update_attributes(get_params)
-      redirect_to question_show_path(@question)
-    else
-      render :edit
-    end
+    @answers = @question.answers
+    @q_comments = @question.comments
+    @answer = Answer.new
+    @comment = Comment.new
+    @vote = Vote.new
   end
 
   private
