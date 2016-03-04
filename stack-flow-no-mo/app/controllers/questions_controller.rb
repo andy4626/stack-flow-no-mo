@@ -8,34 +8,21 @@ class QuestionsController < ApplicationController
   end
 
   def create
+    if logged_in?
+      @question.create(get_params)
+      redirect_to question_show_path(@question)
+    else
+      redirect_to :back
+    end
   end
 
   def show
     @question = Question.find(params[:id])
-  end
-
-  def edit
-    @question = Question.find(params[:id])
-  end
-
-  def update
-    @question = Question.find(params[:id])
-    if @question.user == current_user
-      @question.update_attributes(get_params)
-      redirect_to question_show_path(@question)
-    else
-      render :edit
-    end
-  end
-
-  def destroy
-    @question = Question.find(params[:id])
-    if @question.user == current_user
-      @question.destroy
-      redirect_to root_path
-    else
-      redirect_to :back
-    end
+    @answers = @question.answers
+    @q_comments = @question.comments
+    @answer = Answer.new
+    @comment = Comment.new
+    @vote = Vote.new
   end
 
   private

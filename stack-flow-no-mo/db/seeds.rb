@@ -15,7 +15,7 @@ end
   Question.create(title: Faker::Hacker.noun, content: Faker::Hacker.say_something_smart + "?", user_id: rand(1..5))
 end
 
-30.times do |i|
+300.times do |i|
   Answer.create(content: Faker::Hacker.say_something_smart, user_id: rand(1..5), question_id: rand(1..20))
 end
 
@@ -33,7 +33,7 @@ num = [1, -1]
   Vote.create(value: num.sample, user_id: rand(1..5), votable_type: str.sample, votable_id: rand(1..30))
 end
 
-30.times do |i|
+300.times do |i|
   Comment.create(content: Faker::Hacker.say_something_smart, user_id: rand(1..5), commentable_type: str.sample, commentable_id: rand(1..30))
 end
 

@@ -1,9 +1,17 @@
 Rails.application.routes.draw do
-  resource :users, only: [:new, :create, :show]
-  resources :questions
-  resources :answers, except: [:index, :new, :show]
-  resources :comments, except: [:index, :show]
-  resources :votes, only: [:create, :update]
+  resources :users, only: [:new, :create, :show]
+
+  resources :questions, except: [:edit, :update, :destroy] do
+    resources :comments, only: [:create]
+    resources :votes, only: [:create, :update]
+    resources :answers, only: [:create] do
+      resources :comments, only: [:create]
+      resources :votes, only: [:create, :update]
+    end
+end
+
+
+
   resources :tags, only: [:index, :show]
   resource :sessions
 
