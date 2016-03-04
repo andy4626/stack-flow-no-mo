@@ -31,8 +31,6 @@ ActiveRecord::Schema.define(version: 20160303224135) do
     t.string  "commentable_type"
   end
 
-  add_index "comments", ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id", using: :btree
-
   create_table "questions", force: :cascade do |t|
     t.string   "title",      null: false
     t.text     "content",    null: false
@@ -71,7 +69,5 @@ ActiveRecord::Schema.define(version: 20160303224135) do
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end
-
-  add_index "votes", ["votable_type", "votable_id"], name: "index_votes_on_votable_type_and_votable_id", using: :btree
 
 end
