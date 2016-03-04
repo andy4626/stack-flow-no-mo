@@ -1,3 +1,4 @@
 <li>
   <%= link_to question.title, question%>, by <%= question.user.username%>
 </li>
+Votes: <%=question.votes.sum(:value)%>

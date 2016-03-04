@@ -1,7 +1,7 @@
 <div>
 <h1><%= @question.title %></h1>
 <h2>by <%=link_to @question.user.username, user_path(@question.user)%></h2>
-
+Votes: <%=@question.votes.sum(:value)%>
 <p>
   <%= @question.content%>
 </p>
@@ -14,5 +14,16 @@
     </div>
   <%end%>
 </div>
-
+<br>
+<hr>
+<br>
 <%= render 'answer' %>
+
+<%= form_for @answer, url: question_answers_path(@question) do |f| %>
+<fieldset>
+  <legend>Answer this question!</legend>
+  <%= f.label :content %>
+  <%= f.text_area :content %>
+  <%= f.submit %>
+</fieldset>
+<% end %>
