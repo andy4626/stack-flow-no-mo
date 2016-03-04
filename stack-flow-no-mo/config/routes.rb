@@ -10,8 +10,8 @@ Rails.application.routes.draw do
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
   get '/logout' => 'sessions#destroy'
-  get '/register' => 'user#new'
-  post '/register' => 'user#create'
+  get '/register' => 'users#new'
+  post '/register' => 'users#create'
 
   root 'questions#index'
 
