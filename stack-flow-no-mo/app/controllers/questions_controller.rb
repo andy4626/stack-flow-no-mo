@@ -5,11 +5,16 @@ class QuestionsController < ApplicationController
 
   def new
     @question = Question.new
+    @tag = Tag.new
   end
 
   def create
     @question = Question.new(get_params)
     if logged_in? && @question.save
+      # if get_tag_params
+      #   tag = Tag.find_or_create_by(get_tag_params)
+      #   TagQuestion.create(tag_id: tag.id, question_id: @question.id)
+      # end
       redirect_to question_path(@question)
     else
       redirect_to :back
@@ -29,4 +34,8 @@ class QuestionsController < ApplicationController
   def get_params
     params.require(:question).permit(:title, :content).merge(user: current_user)
   end
+
+  # def get_tag_params
+  #   params.require(:question).permit(:name)
+  # end
 end

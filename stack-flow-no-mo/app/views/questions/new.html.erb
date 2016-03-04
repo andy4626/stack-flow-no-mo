@@ -1,4 +1,4 @@
-<%=form_for @question do |f|%>
+<%=form_for [@question, @tag] do |f|%>
 <fieldset>
   <legend>Ask a Question!</legend>
 
@@ -6,8 +6,6 @@
   <%= f.text_field :title%>
   <%= f.label :content %>
   <%= f.text_area :content %>
-
-  <%= %>
 
   <%= f.submit %>
 </fieldset>
