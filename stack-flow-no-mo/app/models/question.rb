@@ -7,4 +7,8 @@ class Question < ActiveRecord::Base
   has_many :tags, through: :tag_questions
 
   validates :title, :content, presence: true
+
+  def user_voted?
+    self.votes.pluck(:user_id).include?(current_user.id)
+  end
 end

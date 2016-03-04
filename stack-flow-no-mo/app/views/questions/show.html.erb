@@ -5,6 +5,8 @@ Votes: <%=@question.votes.sum(:value)%>
 <p>
   <%= @question.content%>
 </p>
+  <%= link_to "Upvote", q_upvote_question_votes_path(@question), method: 'post' %>
+  <%= link_to "Downvote", q_downvote_question_votes_path(@question), method: 'post' %>
   <%@question.comments.each do |comment|%>
     <div>
       <fieldset>

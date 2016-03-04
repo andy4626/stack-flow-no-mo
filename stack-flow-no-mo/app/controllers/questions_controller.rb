@@ -22,7 +22,7 @@ class QuestionsController < ApplicationController
     @q_comments = @question.comments
     @answer = Answer.new
     @comment = Comment.new
-    @vote = Vote.new
+    @q_vote = @question.votes
   end
 
   private

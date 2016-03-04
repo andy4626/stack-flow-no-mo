@@ -3,10 +3,20 @@ Rails.application.routes.draw do
 
   resources :questions, except: [:edit, :update, :destroy] do
     resources :comments, only: [:create]
-    resources :votes, only: [:create, :update]
+    resource :votes do
+      collection do
+        post 'q_upvote'
+        post 'q_downvote'
+      end
+    end
     resources :answers, only: [:create] do
       resources :comments, only: [:create]
-      resources :votes, only: [:create, :update]
+      resource :votes do
+        collection do
+          post 'a_upvote'
+          post 'a_downvote'
+        end
+      end
     end
 end
 

@@ -3,7 +3,13 @@
   <fieldset>
     <legend>Answered by: <%=answer.user.username%></legend>
     <%=answer.content%>
+    Score: <%=answer.votes.sum(:value)%>
   </fieldset>
+
+<%= link_to "Upvote", a_upvote_question_answer_votes_path(answer.question, answer), method: 'post' %>
+
+<%= link_to "Downvote", a_downvote_question_answer_votes_path(answer.question, answer), method: 'post' %>
+
 </div>
   <%answer.comments.each do |comment|%>
     <div>
