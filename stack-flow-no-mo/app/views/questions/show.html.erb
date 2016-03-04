@@ -5,8 +5,16 @@ Votes: <%=@question.votes.sum(:value)%>
 <p>
   <%= @question.content%>
 </p>
-  <%= link_to "Upvote", q_upvote_question_votes_path(@question), method: 'post' %>
-  <%= link_to "Downvote", q_downvote_question_votes_path(@question), method: 'post' %>
+<% unless @question.tags.empty?%>
+  <h2>Tags: </h2>
+    <% @question.tags.each do |tag|%>
+      <%= link_to tag.name, tag_path(tag)%>
+    <%end%>
+<%end%>
+  <div>
+    <button><%= link_to "Upvote", q_upvote_question_votes_path(@question), method: 'post' %></button>
+    <button><%= link_to "Downvote", q_downvote_question_votes_path(@question), method: 'post' %></button>
+  </div>
   <%@question.comments.each do |comment|%>
     <div>
       <fieldset>
