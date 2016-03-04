@@ -8,6 +8,12 @@ class QuestionsController < ApplicationController
   end
 
   def create
+    if logged_in?
+      @question.create(get_params)
+      redirect_to question_show_path(@question)
+    else
+      redirect_to :back
+    end
   end
 
   def show
@@ -25,16 +31,6 @@ class QuestionsController < ApplicationController
       redirect_to question_show_path(@question)
     else
       render :edit
-    end
-  end
-
-  def destroy
-    @question = Question.find(params[:id])
-    if @question.user == current_user
-      @question.destroy
-      redirect_to root_path
-    else
-      redirect_to :back
     end
   end
 
