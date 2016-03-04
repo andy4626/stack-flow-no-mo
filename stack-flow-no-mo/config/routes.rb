@@ -1,15 +1,15 @@
 Rails.application.routes.draw do
-  resources :users, only: [:new, :create, :show]
+  resource :users, only: [:new, :create, :show]
   resources :questions
   resources :answers, except: [:index, :new, :show]
   resources :comments, except: [:index, :show]
   resources :votes, only: [:create, :update]
   resources :tags, only: [:index, :show]
-  resource :session
+  resource :sessions
 
-  get '/login' => 'session#new'
-  post '/login' => 'session#create'
-  get '/logout' => 'session#destroy'
+  get '/login' => 'sessions#new'
+  post '/login' => 'sessions#create'
+  get '/logout' => 'sessions#destroy'
   get '/register' => 'user#new'
   post '/register' => 'user#create'
 
