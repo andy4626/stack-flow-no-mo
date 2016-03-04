@@ -1,4 +1,9 @@
 <li>
   <%= link_to question.title, question%>, by <%= question.user.username%>
 </li>
-Votes: <%=question.votes.sum(:value)%>
+Score: <%=question.votes.sum(:value)%>
+
+<%= link_to "Upvote", q_upvote_question_votes_path(question), method: 'post' %>
+
+<%= link_to "Downvote", q_downvote_question_votes_path(question), method: 'post' %>
+

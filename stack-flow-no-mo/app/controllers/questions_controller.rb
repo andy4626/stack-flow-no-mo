@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
   def index
-    @questions = Question.all
+    @questions = Question.order(updated_at: :desc)
   end
 
   def new
@@ -8,9 +8,9 @@ class QuestionsController < ApplicationController
   end
 
   def create
-    if logged_in?
-      @question.create(get_params)
-      redirect_to question_show_path(@question)
+    @question = Question.new(get_params)
+    if logged_in? && @question.save
+      redirect_to question_path(@question)
     else
       redirect_to :back
     end
@@ -22,7 +22,7 @@ class QuestionsController < ApplicationController
     @q_comments = @question.comments
     @answer = Answer.new
     @comment = Comment.new
-    @vote = Vote.new
+    @q_vote = @question.votes
   end
 
   private

@@ -7,6 +7,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<button><%= link_to "Home", root_path%></button>
 <% if logged_in? %>
   Welcome <%= current_user.username %>
   <button><%= link_to "Sign Out", logout_path %></button>
