@@ -9,6 +9,7 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       redirect_to root_path
     else
+      @errors = ["It already exists or your input is incorrect"]
       render :new
     end
   end
