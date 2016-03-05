@@ -1,9 +1,8 @@
-require 'spec_helper'
+require 'rails_helper'
+# RSpec.describe User do
+
 
 describe User do
-  context "validations" do
-    it { should validate_presence_of :username }
-    it { should allow_value("zander").for(:username)}
-  end
-
+  it { should allow_value("zander").for(:username)}
+  it { should validate_presence_of :username }
 end
