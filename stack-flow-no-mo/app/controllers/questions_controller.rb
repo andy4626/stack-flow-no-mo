@@ -17,9 +17,9 @@ class QuestionsController < ApplicationController
       if @question.save
         tags = params[:tag].split(', ')
         tags.each do |tag|
-          tag = Tag.new(name: tag)
-          if tag.save
-            TagQuestion.create(tag_id: tag.id, question_id: @question.id)
+          new_tag = Tag.find_or_create_by(name: tag)
+          if new_tag.save
+            TagQuestion.create(tag_id: new_tag.id, question_id: @question.id)
           end
         end
         redirect_to question_path(@question)

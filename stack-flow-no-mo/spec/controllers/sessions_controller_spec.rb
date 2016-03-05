@@ -7,6 +7,7 @@ RSpec.describe UsersController do
       expect(response).to be_success
     end
   end
+
   describe "#create" do
     let(:user){ FactoryGirl.create :user}
       describe "create account" do
