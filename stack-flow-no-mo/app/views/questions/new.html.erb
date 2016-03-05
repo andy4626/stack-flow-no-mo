@@ -1,11 +1,12 @@
-<%=form_for @question do |f|%>
-<fieldset>
-  <legend>Ask a Question!</legend>
+<%= form_tag("/questions", method: "post") do %>
+  <%= label_tag(:title, "Title")%>
+  <%= text_field_tag(:title)%>
 
-  <%= f.label :title%>
-  <%= f.text_field :title%>
-  <%= f.label :content %>
-  <%= f.text_area :content %>
-  <%= f.submit %>
-</fieldset>
-<%end%>
+  <%= label_tag(:content)%>
+  <%= text_area_tag(:content)%>
+
+  <%= label_tag(:tag, 'Tags')%>
+  <%= text_field_tag(:tag)%>
+
+  <%= submit_tag("create")%>
+<% end %>

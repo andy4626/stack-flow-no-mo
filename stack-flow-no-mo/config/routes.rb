@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :create, :show]
 
   resources :questions, except: [:edit, :update, :destroy] do
-    resources :comments, only: [:create]
+    resources :comments, only: [:create, :new]
     resource :votes do
       collection do
         post 'q_upvote'
@@ -10,7 +10,7 @@ Rails.application.routes.draw do
       end
     end
     resources :answers, only: [:create] do
-      resources :comments, only: [:create]
+      resources :comments, only: [:create, :new]
       resource :votes do
         collection do
           post 'a_upvote'
