@@ -1,0 +1,21 @@
+<%if @answer%>
+  <%=form_for [@question, @answer, @comment] do |f|%>
+    <fieldset>
+      <legend>Make a Comment on the answer: <%= @answer.content%></legend>
+      <%=f.label :content%>
+      <%=f.text_area :content%>
+
+      <%=f.submit 'Submit'%>
+    </fieldset>
+  <%end%>
+<%else%>
+  <%=form_for [@question, @comment] do |f|%>
+    <fieldset>
+      <legend>Make a Comment on the question: <%= @question.title%></legend>
+      <%=f.label :content%>
+      <%=f.text_area :content%>
+
+      <%=f.submit 'Submit'%>
+    </fieldset>
+  <%end%>
+<%end%>

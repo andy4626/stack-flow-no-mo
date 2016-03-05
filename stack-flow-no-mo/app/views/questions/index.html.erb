@@ -1,7 +1,10 @@
-<%= link_to "Ask a Question", new_question_path%>
+<% if logged_in? %>
+  <%= link_to "Ask a Question", new_question_path%>
+<% end %>
 
 <ul>
-<% @questions.each do |question| %>
-  <%= render question%>
+  <% @questions.each do |question| %>
+    <%= render question%>
+    <hr>
   <%end%>
 </ul>

@@ -5,6 +5,7 @@ Votes: <%=@question.votes.sum(:value)%>
 <p>
   <%= @question.content%>
 </p>
+<%= link_to "Comment", new_question_comment_path(@question)%>
 <% unless @question.tags.empty?%>
   <h2>Tags: </h2>
     <% @question.tags.each do |tag|%>
@@ -15,25 +16,30 @@ Votes: <%=@question.votes.sum(:value)%>
     <button><%= link_to "Upvote", q_upvote_question_votes_path(@question), method: 'post' %></button>
     <button><%= link_to "Downvote", q_downvote_question_votes_path(@question), method: 'post' %></button>
   </div>
-  <%@question.comments.each do |comment|%>
-    <div>
-      <fieldset>
-        <legend>Comment by: <%=comment.user.username%></legend>
-        <%=comment.content%>
-      </fieldset>
-    </div>
+  <%if @q_comments%>
+    <%@q_comments.each do |comment|%>
+      <div>
+        <fieldset>
+          <legend>Comment by: <%=comment.user.username%></legend>
+          <%=comment.content%>
+        </fieldset>
+      </div>
+    <%end%>
   <%end%>
 </div>
 <br>
 <hr>
 <br>
-<%= render 'answer' %>
+  <%= render 'answer' %>
 
-<%= form_for @answer, url: question_answers_path(@question) do |f| %>
-<fieldset>
-  <legend>Answer this question!</legend>
-  <%= f.label :content %>
-  <%= f.text_area :content %>
-  <%= f.submit %>
-</fieldset>
+
+<% if logged_in? %>
+  <%= form_for @answer, url: question_answers_path(@question) do |f| %>
+  <fieldset>
+    <legend>Answer this question!</legend>
+    <%= f.label :content %>
+    <%= f.text_area :content %>
+    <%= f.submit %>
+  </fieldset>
+  <% end %>
 <% end %>

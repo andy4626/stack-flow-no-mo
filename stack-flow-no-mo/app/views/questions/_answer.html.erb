@@ -6,6 +6,8 @@
     Score: <%=answer.votes.sum(:value)%>
   </fieldset>
 
+<%= link_to "Comment", new_question_answer_comment_path(@question, answer)%>
+
 <button><%= link_to "Upvote", a_upvote_question_answer_votes_path(answer.question, answer), method: 'post' %></button>
 
 <button><%= link_to "Downvote", a_downvote_question_answer_votes_path(answer.question, answer), method: 'post' %></button>

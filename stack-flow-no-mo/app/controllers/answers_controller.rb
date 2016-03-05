@@ -2,11 +2,15 @@ class AnswersController < ApplicationController
 
   def create
     @answer = Answer.new(get_params)
-    if @answer.save
-      redirect_to question_path(@answer.question)
+    if logged_in?
+      if @answer.save
+        redirect_to question_path(@answer.question)
+      else
+        @errors = @answer.errors.full_messages
+        render question_path(@answer.question)
+      end
     else
-      @errors = @answer.errors.full_messages
-      render question_path(@answer.question)
+      redirect_to :back
     end
   end
 
