@@ -62,12 +62,12 @@ ActiveRecord::Schema.define(version: 20160303224135) do
   add_index "users", ["username"], name: "index_users_on_username", using: :btree
 
   create_table "votes", force: :cascade do |t|
-    t.integer  "value",        null: false
-    t.integer  "user_id",      null: false
+    t.integer  "value",        default: 0
+    t.integer  "user_id",                  null: false
     t.integer  "votable_id"
     t.string   "votable_type"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
 end

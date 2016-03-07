@@ -29,7 +29,7 @@ end
 
 str = ["Question", "Answer"]
 num = [1, -1]
-30.times do |i|
+500.times do |i|
   Vote.create(value: num.sample, user_id: rand(1..5), votable_type: str.sample, votable_id: rand(1..30))
 end
 

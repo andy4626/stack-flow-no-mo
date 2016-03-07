@@ -1,6 +1,9 @@
+<div>
 <% if logged_in? %>
   <%= link_to "Ask a Question", new_question_path%>
 <% end %>
+	<%= link_to "Tags", tags_path%>
+</div>
 
 <ul>
   <% @questions.each do |question| %>
